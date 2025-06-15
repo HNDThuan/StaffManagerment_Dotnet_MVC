@@ -1,0 +1,29 @@
+﻿@model StaffManagement.Models.Attendance
+@{
+    ViewBag.Title = "Kết quả điểm danh";
+}
+<div class="container mt-5">
+    <h2 class="text-success">Điểm danh thành công</h2>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Ngày</th>
+            <td>@Model.Date</td>
+        </tr>
+        <tr>
+            <th>Ca làm</th>
+            <td>@Model.Shift.Name</td>
+        </tr>
+        <tr>
+            <th>Giờ vào</th>
+            <td>@Model.CheckInTime?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Giờ ra</th>
+            <td>@Model.CheckOutTime?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Phút trễ</th>
+            <td>@Model.MinutesLate</td>
+        </tr>
+    </table>
+</div>

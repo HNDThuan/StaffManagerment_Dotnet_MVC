@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "QR Code Scan";
+}
+
+<h2>Scan QR Code</h2>
+
+<form asp-action="CheckIn" method="post">
+    <div class="form-group">
+        <label for="QRCodeValue">QR Code Value</label>
+        <input type="text" class="form-control" id="QRCodeValue" name="qrCodeValue" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Check In</button>
+</form>
+
+<div>
+    <h4>Your QR Code:</h4>
+    @* Hiển thị QR Code đã tạo *@
+    <img src="@Url.Action("GenerateQRCode", "Attendance", new { qrCodeValue = "SampleQRCodeData" })" alt="QR Code" />
+</div>
+
+@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}

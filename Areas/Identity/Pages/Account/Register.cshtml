@@ -1,0 +1,152 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>@ViewData["Title"]</title>
+
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="~/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+	<!-- icheck bootstrap -->
+	<link rel="stylesheet" href="~/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="~/AdminLTE/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+	<div class="register-box">
+		<div class="card card-outline card-primary">
+			<div class="card-header text-center">
+				<a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+			</div>
+			<div class="card-body">
+				<p class="login-box-msg">Register a new membership</p>
+
+				<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+					<div asp-validation-summary="All" class="text-danger"></div>
+
+					<div class="input-group mb-3">
+						<input class="form-control" asp-for="Input.UserName" autocomplete="on" placeholder="Username" />
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+						<span asp-validation-for="Input.Email" class="text-danger"></span>
+					</div>
+
+
+					<div class="input-group mb-3">
+						<input class="form-control" asp-for="Input.Email" autocomplete="on" placeholder="Email">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+						<span asp-validation-for="Input.Email" class="text-danger"></span>
+					</div>
+
+					<div class="input-group mb-3">
+						<input class="form-control" asp-for="Input.Password" placeholder="Password">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+						<span asp-validation-for="Input.Password" class="text-danger"></span>
+					</div>
+
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" asp-for="Input.ConfirmPassword" placeholder="Retype password">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+						<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+					</div>
+					<div class="row">
+						<div class="col-8">
+							<div class="icheck-primary">
+								<input type="checkbox" id="agreeTerms" name="terms" value="agree">
+								<label for="agreeTerms">
+									I agree to the <a href="#">terms</a>
+								</label>
+							</div>
+						</div>
+						<!-- /.col -->
+						<div class="col-4">
+							<button type="button" id="submitBtn" class="btn btn-primary btn-block">Register</button>
+						</div>
+
+						<div class="alert alert-danger d-none col-12 text-center" id="errorMessage"><p>You have to agree with our terms to continue process</p></div>
+
+						<!-- /.col -->
+					</div>
+				</form>
+
+				<div class="social-auth-links text-center">
+					<a href="#" class="btn btn-block btn-primary">
+						<i class="fab fa-facebook mr-2"></i>
+						Sign up using Facebook
+					</a>
+					<a href="#" class="btn btn-block btn-danger">
+						<i class="fab fa-google-plus mr-2"></i>
+						Sign up using Google+
+					</a>
+				</div>
+
+				<a asp-area="Identity" asp-controller="Account" asp-action="Login" class="text-center">I already have a membership</a>
+			</div>
+			<!-- /.form-box -->
+		</div><!-- /.card -->
+	</div>
+	<!-- /.register-box -->
+	<!-- jQuery -->
+	<script src="~/AdminLTE/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="~/AdminLTE/dist/js/adminlte.min.js"></script>
+
+	<script>
+		const checkbox = document.getElementById("agreeTerms");
+		const submitButton = document.getElementById("submitBtn");
+		const errorMessage = document.getElementById("errorMessage");
+
+		checkbox.addEventListener("change", function() {
+			if (checkbox.checked) {
+				submitButton.disabled = false;
+				submitButton.type = 'submit';
+				errorMessage.classList.add("d-none");
+			} else {
+				submitButton.disabled = true;
+				submitButton.type = 'button';
+
+				errorMessage.classList.remove("d-none");
+			}
+		});
+
+		submitButton.addEventListener("click", function() {
+			if (!checkbox.checked) {
+				errorMessage.classList.remove("d-none");
+			}
+		});
+	</script>
+</body>
+</html>
+
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

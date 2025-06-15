@@ -1,0 +1,50 @@
+﻿@model StaffManagement.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<div class="container-fluid">
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <ol class="breadcrumb bg-white ">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Calendar</li>
+            </ol>
+        </div>
+        <div class="col-sm-12 ">
+            <div class="w-25  bg-gray-light p-3 m-2 rounded-3 shadow">
+                <h1 class="text-center">Profile</h1>
+                <div class="form-group d-flex justify-content-between align-items-center p-1">
+                    <b class="m-0">Full Name: </b>
+                    <p class="m-0"> @($"{Model.FirstName} {Model.MiddleName} {Model.LastName}")</p>
+                </div>
+                <hr />
+                <div class="form-group d-flex justify-content-between align-items-center p-1">
+                    <b class="m-0">Email: </b>
+                    <p class="m-0"> @Model.Email</p>
+                </div>
+                <hr />
+                <div class="form-group d-flex justify-content-between align-items-center p-1">
+                    <b class="m-0">Phone Number: </b>
+                    <p class="m-0"> @Model.PhoneNumber</p>
+                </div>
+                <hr />
+                <div class="form-group d-flex justify-content-between align-items-center p-1">
+                    <b class="m-0">Nationality: </b>
+                    <p class="m-0"> @Model.NationalId</p>
+                </div>
+                <hr />
+                <div class="form-group d-flex justify-content-between align-items-center p-1">
+                    <b class="m-0">Role: </b>
+                    <p class="m-0"> @ViewBag.RoleName</p>
+                </div>
+                <hr />
+
+                <a class="btn btn-outline-primary btn-sm mt-2 w-100" asp-action="Edit" asp-route-id="@Model.Id"><i class="far fa-edit"></i> Edit</a>
+                <a class="btn btn-outline-primary btn-sm mt-2 w-100" asp-action="LeaveApplication"><i class="far fa-edit"></i> Leave</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

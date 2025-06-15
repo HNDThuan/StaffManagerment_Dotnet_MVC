@@ -1,0 +1,146 @@
+﻿@model StaffManagement.Models.Department
+
+@{
+	ViewData["Title"] = "Details";
+	int i = 1;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <div class="col-sm-12">
+			<div class="row">
+			
+				<div class="col-12">
+
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Table</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>
+											Employee code
+										</th>
+										<th>
+											Full name
+										</th>				
+										<th>
+											Nationality
+										</th>
+										<th>
+											Date of birth
+										</th>
+										<th>
+											Position
+										</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model.Employees)
+									{
+										<tr>
+											<td>@(i++)</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.EmployeeCode)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.FullName)
+											</td>					
+											<td>
+												@Html.DisplayFor(modelItem => item.Nationality)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.DateOfBirth)
+											</td>
+											<td>
+												@($"{item.Position.Name} - {item.Position.PositionCode}")
+											</td>
+											
+											<td>
+												<div class="d-flex justify-content-center align-items-center nowrap">
+													<a class="btn btn-block btn-outline-primary btn-sm mt-2" asp-action="Edit" asp-route-id="@item.Id"><i class="far fa-edit"></i> Edit</a>
+													<a class="btn btn-block btn-outline-info btn-sm " asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Details</a>
+													<a class="btn btn-block btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
+												</div>
+											</td>
+										</tr>
+									}
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>#</th>
+										<th>
+											Employee code
+										</th>
+										<th>
+											Full name
+										</th>
+										<th>
+											Nationality
+										</th>
+										<th>
+											Date of birth
+										</th>
+										<th>
+											Position
+										</th>
+										<th>Actions</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+
+        </div>
+   
+	
+	</dl>
+
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

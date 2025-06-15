@@ -1,0 +1,114 @@
+﻿@model IEnumerable<StaffManagement.Models.SystemCode>
+
+@{
+    ViewData["Title"] = "System Code Table";
+    int i = 1;
+}
+
+<div class="row">
+	<div class="col-4 ps-0 mb-4">
+		<form asp-action="Create" method="get">
+
+			<button type="submit" class="text-nowrap btn btn-block btn-outline-success btn-lg"><i class="fa fa-plus" aria-hidden="true"></i>  Add New System Code</button>
+		</form>
+	</div>
+	<div class="col-12">
+
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Table</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreatedById)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreatedOn)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModifiedById)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModifiedOn)
+                            </th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@(i++)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedById)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModifiedById)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ModifiedOn)
+                                </td>
+								<td>
+									<div class="d-flex justify-content-center align-items-center nowrap">
+										<a class="btn btn-block btn-outline-primary btn-sm mt-2" asp-action="Edit" asp-route-id="@item.Id"><i class="far fa-edit"></i> Edit</a>
+										<a class="btn btn-block btn-outline-info btn-sm " asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Details</a>
+										<a class="btn btn-block btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i> Delete</a>
+									</div>
+								</td>
+							</tr>
+						}
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreatedById)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreatedOn)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModifiedById)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ModifiedOn)
+                            </th>
+							<th>Actions</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.col -->
+</div>
+<!-- /.row -->
+

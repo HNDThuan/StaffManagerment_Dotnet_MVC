@@ -1,0 +1,19 @@
+﻿@model string
+@{
+    ViewBag.Title = "Mã QR Ca Làm Việc";
+    var errMsg = TempData["ErrorMessage"] as string;
+}
+<div class="text-center mt-5">
+   
+    @if (errMsg == null)
+    {
+        <h2>@ViewBag.Title</h2>
+        <img class="mt-3" src="data:image/png;base64,@Model" alt="Shift QR Code" />
+        <p class="mt-4 text-muted">Mã QR hết hạn sau 30 phút kể từ khi tạo.</p>
+    }else
+    {
+        <h2>@errMsg</h2>
+    }
+
+</div>
+
